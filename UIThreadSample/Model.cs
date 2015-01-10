@@ -9,11 +9,13 @@ namespace UIThreadSample
 {
     class Model
     {
+        [UIThreadPolicy]
         public async Task<IList<string>> Fetch()
         {
             return await Task.Run(() => DoFetch());
         }
 
+        [WorkerThreadPolicy]
         private IList<string> DoFetch()
         {
             Thread.Sleep(1000);

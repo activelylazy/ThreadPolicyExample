@@ -19,7 +19,9 @@ namespace UIThreadSample
 
         internal bool IsFetching 
         {
+            [UIThreadPolicy]
             get { return m_isFetching; }
+            [UIThreadPolicy]
             set 
             {
                 m_isFetching = value;
@@ -28,12 +30,14 @@ namespace UIThreadSample
         }
         internal event EventHandler IsFetchingChanged = delegate { };
 
+        [UIThreadPolicy]
         public ViewModel()
         {
             Items = new ObservableCollection<string>();
             FetchCommand = new FetchCommand(this);
         }
 
+        [UIThreadPolicy]
         public async void Fetch()
         {
             IsFetching = true;
